@@ -562,6 +562,7 @@ export function searchModels(query: string): ModelData[] {
 
 // ==================== PRELOAD ALL MODELS ====================
 export function preloadAllModels() {
+  if (typeof window === 'undefined') return; // Never run during SSR
   Object.values(modelRegistry).forEach(model => {
     useGLTF.preload(model.url);
   });

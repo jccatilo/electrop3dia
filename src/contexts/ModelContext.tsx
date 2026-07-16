@@ -1,7 +1,7 @@
 'use client';
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { modelRegistry, ModelData } from '@/lib/3d/ModelLibrary';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { modelRegistry, ModelData, preloadAllModels } from '@/lib/3d/ModelLibrary';
 
 interface ModelContextType {
   selectedModel: ModelData | null;
@@ -18,6 +18,11 @@ export function ModelProvider({ children }: { children: ReactNode }) {
   const [selectedModel, setSelectedModel] = useState<ModelData | null>(null);
   const [recentlyViewed, setRecentlyViewed] = useState<ModelData[]>([]);
   const [favorites, setFavorites] = useState<string[]>([]);
+
+  // Preload all GLB models on the client to avoid hydration mismatches
+  useEffect(() => {
+    preloadAllModels();
+  }, []);
 
   const addToRecentlyViewed = (modelId: string) => {
     const model = modelRegistry[modelId];

@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ModelProvider } from '@/contexts/ModelContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
-import { preloadAllModels } from '@/lib/3d/ModelLibrary';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -52,11 +51,6 @@ export const metadata: Metadata = {
   },
 };
 
-// Preload models (this runs once)
-if (typeof window !== 'undefined') {  
-  preloadAllModels();
-}
-
 export default function RootLayout({
   children,
 }: {
@@ -64,7 +58,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
         <ThemeProvider>
           <ModelProvider>
             {children}
