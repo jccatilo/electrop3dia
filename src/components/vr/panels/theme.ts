@@ -8,6 +8,8 @@ export interface VRColors {
   text: string;
   textMuted: string;
   accent: string;
+  outlineHover: string;
+  outlineHold: string;
   rowHoverBg: string;
   selectedBg: string;
   selectedText: string;
@@ -54,6 +56,8 @@ export function getVRColors(isDark: boolean): VRColors {
       text: '#e5e7eb',
       textMuted: '#94a3b8',
       accent: '#60a5fa',
+      outlineHover: '#4ade80',
+      outlineHold: '#60a5fa',
       rowHoverBg: '#1e293b',
       selectedBg: '#1d4ed8',
       selectedText: '#ffffff',
@@ -69,6 +73,8 @@ export function getVRColors(isDark: boolean): VRColors {
     text: '#111827',
     textMuted: '#6b7280',
     accent: '#2563eb',
+    outlineHover: '#16a34a',
+    outlineHold: '#2563eb',
     rowHoverBg: '#eff6ff',
     selectedBg: '#dbeafe',
     selectedText: '#1e3a8a',

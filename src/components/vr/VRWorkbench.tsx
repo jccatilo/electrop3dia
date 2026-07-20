@@ -9,7 +9,7 @@ import { Container, Text, withOpacity } from '@react-three/uikit';
 import * as THREE from 'three';
 import { modelRegistry } from '@/lib/3d/ModelLibrary';
 import { meshTooltips } from '@/lib/constants/tooltips';
-import { getVRColors, sanitizeVRText } from './panels/theme';
+import { getVRColors, sanitizeVRText, VRColors } from './panels/theme';
 import { CategoryPanel } from './panels/CategoryPanel';
 import { GuidePanel } from './panels/GuidePanel';
 import { InfoPanel } from './panels/InfoPanel';
@@ -33,14 +33,17 @@ function useInXR() {
 interface VRModelProps {
   url: string;
   resetKey: number;
+  colors: VRColors;
   onTooltipChange: (tooltip: TooltipState | null) => void;
 }
 
-function VRModel({ url, resetKey, onTooltipChange }: VRModelProps) {
+function VRModel({ url, resetKey, colors, onTooltipChange }: VRModelProps) {
   const { scene } = useGLTF(url);
   const spinRef = useRef<THREE.Group>(null);
   const hoveredNameRef = useRef<string | null>(null);
   const [paused, setPaused] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [held, setHeld] = useState(false);
   const inXR = useInXR();
 
   // Models in the registry are authored at wildly different scales; in VR one
@@ -63,6 +66,41 @@ function VRModel({ url, resetKey, onTooltipChange }: VRModelProps) {
       }
     });
   }, [scene]);
+
+  // Backface outline clone: an inverted (BackSide) copy of the model, scaled up
+  // slightly, drawn behind the real mesh to form a silhouette. Built once per
+  // model — it shares geometry with the real (cached) scene, so we never dispose
+  // its geometry, only the throwaway basic materials.
+  const outline = useMemo(() => {
+    const clone = scene.clone(true);
+    clone.traverse((obj) => {
+      if (obj instanceof THREE.Mesh) {
+        obj.material = new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.BackSide });
+        obj.castShadow = false;
+        obj.receiveShadow = false;
+        // The silhouette must never intercept raycasts meant for the real model.
+        obj.raycast = () => {};
+      }
+    });
+    return clone;
+  }, [scene]);
+
+  const outlineColor = inXR ? (held ? colors.outlineHold : hovered ? colors.outlineHover : null) : null;
+
+  useEffect(() => {
+    if (!outlineColor) return;
+    outline.traverse((obj) => {
+      if (obj instanceof THREE.Mesh) {
+        (obj.material as THREE.MeshBasicMaterial).color.set(outlineColor);
+      }
+    });
+  }, [outline, outlineColor]);
+
+  useEffect(() => () => {
+    outline.traverse((obj) => {
+      if (obj instanceof THREE.Mesh) (obj.material as THREE.Material).dispose();
+    });
+  }, [outline]);
 
   // Auto-spin only on the flat-screen preview; in VR the user rotates the
   // model with their hands instead.
@@ -98,8 +136,23 @@ function VRModel({ url, resetKey, onTooltipChange }: VRModelProps) {
     setPaused(false);
   }, [onTooltipChange]);
 
+  const handleHoverOver = useCallback((e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation();
+    setHovered(true);
+  }, []);
+
+  const handleHoverOut = useCallback((e: ThreeEvent<PointerEvent>) => {
+    e.stopPropagation();
+    setHovered(false);
+  }, []);
+
   const content = (
-    <group ref={spinRef} scale={normalizedScale}>
+    <group
+      ref={spinRef}
+      scale={normalizedScale}
+      onPointerOver={handleHoverOver}
+      onPointerOut={handleHoverOut}
+    >
       <Center>
         <primitive
           object={scene}
@@ -107,6 +160,11 @@ function VRModel({ url, resetKey, onTooltipChange }: VRModelProps) {
           onPointerOut={handlePointerOut}
         />
       </Center>
+      {outlineColor && (
+        <Center>
+          <primitive object={outline} scale={1.06} dispose={null} />
+        </Center>
+      )}
     </group>
   );
 
@@ -124,6 +182,13 @@ function VRModel({ url, resetKey, onTooltipChange }: VRModelProps) {
               rotate={true}
               scale={{ uniform: true, x: SCALE_RANGE, y: SCALE_RANGE, z: SCALE_RANGE }}
               multitouch={true}
+              apply={(state, target) => {
+                if (state.first) setHeld(true);
+                else if (state.last) setHeld(false);
+                target.position.copy(state.current.position);
+                target.quaternion.copy(state.current.quaternion);
+                target.scale.copy(state.current.scale);
+              }}
             >
               {content}
             </Handle>
@@ -279,6 +344,7 @@ export function VRWorkbench({ isDark, selectedId, onModelSelect }: VRWorkbenchPr
             key={selectedModel.id}
             url={selectedModel.url}
             resetKey={resetKey}
+            colors={colors}
             onTooltipChange={setTooltip}
           />
         </Suspense>
