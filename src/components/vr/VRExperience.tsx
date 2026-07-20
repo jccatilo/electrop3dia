@@ -63,6 +63,10 @@ export function VRExperience() {
     }
   };
 
+  const handleExitVR = () => {
+    store.getState().session?.end();
+  };
+
   return (
     <div className={`h-screen w-screen ${isDark ? 'bg-black text-white' : 'bg-gray-50 text-gray-900'} flex flex-col overflow-hidden`}>
       {/* Header */}
@@ -144,6 +148,7 @@ export function VRExperience() {
               isDark={isDark}
               selectedId={selectedId}
               onModelSelect={setSelectedId}
+              onExitVR={handleExitVR}
             />
           </XR>
         </Canvas>
