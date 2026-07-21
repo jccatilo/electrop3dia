@@ -191,6 +191,24 @@ function VRModel({ url, resetKey, colors, onTooltipChange }: VRModelProps) {
               }}
             >
               {content}
+              {!held && (
+                <group position={[0, 0.3, 0]}>
+    <Billboard>
+                    <Container
+                      pixelSize={0.001}
+                      paddingX={6}
+                      paddingY={3}
+                      borderRadius={4}
+                      backgroundColor={'#ffffff'}
+                      borderWidth={0}
+                    >
+                      <Text fontSize={10} color={colors.text}>
+                        Hold to Grab
+                      </Text>
+                    </Container>
+                  </Billboard>
+                </group>
+              )}
             </Handle>
           ) : (
             content
