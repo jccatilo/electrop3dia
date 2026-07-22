@@ -1,7 +1,7 @@
 'use client';
 
 import { Container, Text, withOpacity } from '@react-three/uikit';
-import { componentGuides, GuideSection } from '@/lib/constants/componentGuides';
+import { getGuideByUrl, GuideSection } from '@/lib/constants/componentGuides';
 import { VRColors, sanitizeVRText } from './theme';
 
 interface GuidePanelProps {
@@ -31,7 +31,7 @@ function SectionBlock({ section, colors }: { section: GuideSection; colors: VRCo
 }
 
 export function GuidePanel({ colors, modelUrl }: GuidePanelProps) {
-  const guide = modelUrl ? componentGuides.getGuideByUrl(modelUrl) : null;
+  const guide = modelUrl ? getGuideByUrl(modelUrl) : null;
 
   return (
     <Container
