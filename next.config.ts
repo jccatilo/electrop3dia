@@ -4,9 +4,9 @@ const nextConfig = {
   reactStrictMode: true,
   allowedDevOrigins: [
     '0.0.0.0',
-    '192.168.103.118'
+    '192.168.103.118',
+    'electrop3dia.trioe.dev'
   ],
-  swcMinify: true,
   images: {
     unoptimized: true, // Required for static export
   },
