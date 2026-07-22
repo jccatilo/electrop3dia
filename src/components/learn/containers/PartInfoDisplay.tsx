@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { Cpu, ChevronLeft, ChevronRight, Info, Grid, Layers, Zap, Circle, ArrowRight } from 'lucide-react';
-import { getPartInfoForComponent, PartInfo } from '../../../lib/constants/partInfo';
+import {getPartInfoForComponent, PartInfo} from "@/lib/constants/partInfo";
+// import { getPartInfoForComponent, PartInfo } from '@/lib/constants/partInfo';
 
 interface PartInfoDisplayProps {
   isDark: boolean;
