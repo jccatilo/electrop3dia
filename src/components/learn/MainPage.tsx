@@ -10,6 +10,7 @@ import { BreadboardCategory } from './categories/breadboard';
 import { DisplayCategory } from './categories/display';
 import { GeneralCategory } from './categories/general';
 import { InputCategory } from './categories/input';
+import { SensorsCategory } from './categories/sensors';
 import { MicrocontrollerCategory } from './categories/microcontroller';
 import { MotorCategory } from './categories/motor';
 import { OutputCategory } from './categories/output';
@@ -394,6 +395,7 @@ export function MainPage() {
                 <DisplayCategory onModelSelect={handleModelSelect} />
                 <GeneralCategory onModelSelect={handleModelSelect} />
                 <InputCategory onModelSelect={handleModelSelect} />
+                <SensorsCategory onModelSelect={handleModelSelect} />
                 <MicrocontrollerCategory onModelSelect={handleModelSelect} />
                 <MotorCategory onModelSelect={handleModelSelect} />
                 <OutputCategory onModelSelect={handleModelSelect} />

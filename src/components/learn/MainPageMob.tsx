@@ -10,6 +10,7 @@ import { BreadboardCategory } from './categories/breadboard';
 import { DisplayCategory } from './categories/display';
 import { GeneralCategory } from './categories/general';
 import { InputCategory } from './categories/input';
+import { SensorsCategory } from './categories/sensors';
 import { MotorCategory } from './categories/motor';
 import { OutputCategory } from './categories/output';
 import { PowerCategory } from './categories/power';
@@ -244,6 +245,7 @@ function CategoryGrid({ onModelSelect }: { onModelSelect: (url: string, position
     { name: 'Display', component: DisplayCategory, key: 'display' },
     { name: 'General', component: GeneralCategory, key: 'general' },
     { name: 'Input', component: InputCategory, key: 'input' },
+    { name: 'Sensors', component: SensorsCategory, key: 'sensors' },
     { name: 'Motor', component: MotorCategory, key: 'motor' },
     { name: 'Output', component: OutputCategory, key: 'output' },
     { name: 'Power', component: PowerCategory, key: 'power' },
