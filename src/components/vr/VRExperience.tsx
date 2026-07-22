@@ -20,7 +20,13 @@ const rayModel = { color: '#93c5fd', opacity: 0.9, size: 0.012, maxLength: 3 };
 // XR store — this module is only ever loaded client-side (dynamic import, ssr: false)
 const store = createXRStore({
   controller: { rayPointer: { rayModel } },
-  hand: { rayPointer: { rayModel } },
+  hand: {
+    // Pinch (thumb + index) still points the ray so you can click UI panels.
+    rayPointer: { rayModel },
+    // Fist / squeeze grabs objects via a sphere around the hand — no pinch
+    // needed to move the model. `radius` is the grab sphere size.
+    grabPointer: { radius: 0.12 },
+  },
 });
 
 export function VRExperience() {
@@ -61,6 +67,10 @@ export function VRExperience() {
     } else {
       store.enterVR();
     }
+  };
+
+  const handleExitVR = () => {
+    store.getState().session?.end();
   };
 
   return (
@@ -144,6 +154,7 @@ export function VRExperience() {
               isDark={isDark}
               selectedId={selectedId}
               onModelSelect={setSelectedId}
+              onExitVR={handleExitVR}
             />
           </XR>
         </Canvas>
