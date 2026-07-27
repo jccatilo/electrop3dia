@@ -362,6 +362,25 @@ export function VRWorkbench({ isDark, selectedId, onModelSelect, onExitVR }: VRW
         </Container>
       </group>
 
+      {/* Hint — small note above the reset model button */}
+      <group position={[0, 0.75, -0.72]} rotation={[-0.35, 0, 0]}>
+        <Container
+          pixelSize={0.0015}
+          paddingX={14}
+          paddingY={8}
+          borderRadius={10}
+          cursor="pointer"
+          backgroundColor={withOpacity(colors.panelBg, 0.9)}
+          borderWidth={1.5}
+          borderColor={colors.panelBorder}
+          hover={{ backgroundColor: colors.rowHoverBg }}
+        >
+          <Text fontSize={7.5} fontWeight={400} color={colors.mutedText ?? colors.text}>
+            Note: If you cannot grab the item, try resetting the model
+          </Text>
+        </Container>
+      </group>
+
       {/* Exit VR button — only shown inside a session, since it ends the XR
           session and would be meaningless (and unreachable) on the flat preview */}
       {inXR && (
