@@ -120,7 +120,7 @@ function VRModel({ url, resetKey, colors, onTooltipChange }: VRModelProps) {
     if (tooltipText) {
       onTooltipChange({
         text: tooltipText,
-        position: [e.point.x, e.point.y + 0.06, e.point.z],
+        position: [e.point.x, e.point.y + 0.2, e.point.z],
       });
       setPaused(true);
     } else {
