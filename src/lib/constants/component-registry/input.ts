@@ -713,7 +713,7 @@ export const input = {
       { fact: "IR proximity sensors are used in smartphones to turn off the display when you hold the phone to your ear during a call." },
     ]
   },
-  ultrasonicsensor: {
+  ultrasonicdistancesensor: {
     guide: {
       title: 'Ultrasonic Distance Sensor Guide',
       icon: 'Radio',
@@ -803,7 +803,7 @@ export const input = {
     ]
   },
 
-  ultrasonicsensor4pin: {
+  ultrasonicdistancesensor4pins: {
     guide: {
       title: 'Ultrasonic Sensor (4-Pin) Guide',
       icon: 'Radio',
@@ -1305,7 +1305,7 @@ export const input = {
     ]
   },
 
-  keypad4x4: {
+  "4x4keypad": {
     guide: {
       title: '4x4 Keypad Guide',
       icon: 'Grid',
