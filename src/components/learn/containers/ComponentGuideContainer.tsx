@@ -2,8 +2,7 @@
 
 import React from 'react';
 import { Info, Cpu, Zap, Grid, Sparkles, Activity, Battery, Circle, Layers, ArrowRight, CircuitBoard, AlertTriangle, Lightbulb } from 'lucide-react';
-import type { ComponentGuide, GuideSection } from '@/types/Component';
-import { getGuideByUrl } from '@/lib/constants/componentGuides';
+import { componentGuides, ComponentGuide, GuideSection } from '../../../lib/constants/componentGuides';
 
 interface ComponentGuideContainerProps {
   isDark: boolean;
@@ -45,7 +44,7 @@ export function ComponentGuideContainer({ isDark, selectedModel, tooltip }: Comp
   }
 
   // Get the appropriate guide for the selected component
-  const guide: ComponentGuide | null = getGuideByUrl(selectedModel.url);
+  const guide: ComponentGuide | null = componentGuides.getGuideByUrl(selectedModel.url);
 
   if (!guide) {
     return (

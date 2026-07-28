@@ -1,6 +1,6 @@
 
 export const power = {
-  "9vbattery": {
+  battery9v: {
     guide: {
       title: '9V Battery Guide',
       icon: 'Battery',
@@ -74,7 +74,7 @@ export const power = {
     ]
   },
 
-  "1.5vbattery": {
+  battery15v: {
     guide: {
       title: '1.5V Battery Guide',
       icon: 'Battery',
@@ -148,7 +148,7 @@ export const power = {
     ]
   },
 
-  "coincell3vbattery": {
+  coincell: {
     guide: {
       title: 'Coin Cell Battery Guide',
       icon: 'Battery',

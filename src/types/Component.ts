@@ -1,5 +1,5 @@
 
-export type GuideSection =
+type GuideSection =
   | {
   type: "paragraph";
   title: string;
@@ -13,7 +13,7 @@ export type GuideSection =
   content: string[];
 };
 
-export type ComponentGuide = {
+type ComponentGuide = {
   title: string;
   icon: string;
   sections: GuideSection[];
@@ -21,7 +21,7 @@ export type ComponentGuide = {
   commonMistakes: string[];
 }
 
-export type ComponentPartInfo = {
+type ComponentPartInfo = {
   partName: string;
   description: string;
   category: string;

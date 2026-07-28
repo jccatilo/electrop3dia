@@ -1,6 +1,6 @@
 
 export const display = {
-  "7segmentdisplay": {
+  sevensegmentdisplay: {
     guide: {
       title: '7-Segment Display Guide',
       icon: 'Monitor',
@@ -39,7 +39,7 @@ export const display = {
     ]
   },
 
-  "7segmentclockdisplay": {
+  sevensegmentclock: {
     guide: {
       title: '7-Segment Clock Display Guide',
       icon: 'Monitor',
@@ -112,7 +112,7 @@ export const display = {
     ]
   },
 
-  "lcd16x2_i2c": {
+  lcd16x2i2c: {
     guide: {
       title: 'LCD 16x2 I2C Guide',
       icon: 'Monitor',

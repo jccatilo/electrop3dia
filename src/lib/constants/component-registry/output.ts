@@ -80,7 +80,7 @@ export const output = {
     ]
   },
 
-  ledrgb: {
+  rgbled: {
     guide: {
       title: 'RGB LED Guide',
       icon: 'Lightbulb',

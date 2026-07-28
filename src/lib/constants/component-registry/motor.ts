@@ -55,7 +55,7 @@ export const motor = {
     ]
   },
 
-  dcmotorwithencoder: {
+  dcmotorencoder: {
     guide: {
       title: 'DC Motor with Encoder Guide',
       icon: 'Zap',
