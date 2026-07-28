@@ -1,3 +1,4 @@
+import {ComponentCategory} from "@/types/Component";
 
 export const input = {
   pushbutton: {
@@ -1458,4 +1459,4 @@ export const input = {
       { fact: "Reading a DIP switch setting is essentially reading a binary number - the combination of ON/OFF positions encodes a unique value." },
     ]
   },
-};
+} satisfies ComponentCategory;

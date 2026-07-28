@@ -11,6 +11,11 @@ export type GuideSection =
   title: string;
   icon: string;
   content: string[];
+} | {
+  type: 'warning',
+  title: string,
+  icon: string,
+  content: string,
 };
 
 export type ComponentGuide = {
@@ -29,7 +34,7 @@ export type ComponentPartInfo = {
 
 export type Component = {
   guide: ComponentGuide;
-  parts: ComponentPartInfo[];
+  partInfo: ComponentPartInfo[];
   trivia: ComponentTrivia[];
 }
 

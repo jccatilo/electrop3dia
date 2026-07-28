@@ -1,3 +1,4 @@
+import {ComponentCategory} from "@/types/Component";
 
 export const general = {
   resistor: {
@@ -205,5 +206,5 @@ export const general = {
       { fact: "Inductors are used in virtually every power supply to smooth out voltage ripple and filter unwanted frequencies." },
     ]
   },
-};
+} satisfies ComponentCategory;
 

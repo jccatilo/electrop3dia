@@ -1,3 +1,4 @@
+import {ComponentCategory} from "@/types/Component";
 
 export const power = {
   battery9v: {
@@ -299,4 +300,4 @@ export const power = {
       { fact: "The cost of solar panels has dropped by over 99% since 1977, making them one of the fastest-falling technologies in history.", year: "1977" },
     ]
   },
-};
+} satisfies ComponentCategory;

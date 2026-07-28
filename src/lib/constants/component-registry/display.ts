@@ -1,3 +1,4 @@
+import {ComponentCategory} from "@/types/Component";
 
 export const display = {
   sevensegmentdisplay: {
@@ -148,4 +149,4 @@ export const display = {
       { fact: "Each I2C device has a unique address - you can connect up to 127 different devices on the same two wires!" },
     ]
   },
-};
+} satisfies ComponentCategory;

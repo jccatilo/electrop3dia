@@ -1,3 +1,4 @@
+import {ComponentCategory} from "@/types/Component";
 
 export const motor = {
   vibrationmotor: {
@@ -141,5 +142,5 @@ export const motor = {
       { fact: "The gear ratio is stamped on most gearmotors - a '1:48' ratio means the output shaft spins once for every 48 turns of the motor." },
     ]
   },
-}
+} satisfies ComponentCategory;
 

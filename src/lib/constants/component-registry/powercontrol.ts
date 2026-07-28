@@ -1,3 +1,4 @@
+import {ComponentCategory} from "@/types/Component";
 
 export const powercontrol = {
   npntransistor: {
@@ -584,4 +585,4 @@ export const powercontrol = {
       { fact: "The Darlington configuration was invented by Sidney Darlington at Bell Labs in 1953. He never patented it personally, and it became one of the most widely used transistor configurations ever.", year: "1953" },
     ]
   },
-};
+} satisfies ComponentCategory;

@@ -1,3 +1,4 @@
+import { ComponentCategory } from "@/types/Component";
 
 export const output = {
   led: {
@@ -417,4 +418,4 @@ export const output = {
       { fact: "Piezoelectric crystals were first studied by Pierre and Jacques Curie in 1880 - yes, Pierre Curie of radioactivity fame!", year: "1880" },
     ]
   },
-};
+} satisfies ComponentCategory;
