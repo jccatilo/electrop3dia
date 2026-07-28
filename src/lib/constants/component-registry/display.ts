@@ -1,7 +1,7 @@
 import {ComponentCategory} from "@/types/Component";
 
 export const display = {
-  sevensegmentdisplay: {
+  "7segmentdisplay": {
     guide: {
       title: '7-Segment Display Guide',
       icon: 'Monitor',
@@ -40,7 +40,7 @@ export const display = {
     ]
   },
 
-  sevensegmentclock: {
+  "7segmentclockdisplay": {
     guide: {
       title: '7-Segment Clock Display Guide',
       icon: 'Monitor',
@@ -113,7 +113,7 @@ export const display = {
     ]
   },
 
-  lcd16x2i2c: {
+  "lcd16x2_i2c": {
     guide: {
       title: 'LCD 16x2 I2C Guide',
       icon: 'Monitor',

@@ -1,7 +1,7 @@
 import {ComponentCategory} from "@/types/Component";
 
 export const power = {
-  battery9v: {
+  "9vbattery": {
     guide: {
       title: '9V Battery Guide',
       icon: 'Battery',
@@ -75,7 +75,7 @@ export const power = {
     ]
   },
 
-  battery15v: {
+  "1.5vbattery": {
     guide: {
       title: '1.5V Battery Guide',
       icon: 'Battery',
@@ -149,7 +149,7 @@ export const power = {
     ]
   },
 
-  coincell: {
+  "coincell3vbattery": {
     guide: {
       title: 'Coin Cell Battery Guide',
       icon: 'Battery',
