@@ -1,6 +1,5 @@
 import {components} from './component-registry/index';
-import type {ComponentGuide} from '@/types/Component'
-
+import type {ComponentGuide} from '@/src/types/Component.ts'
 
 export const getGuideByUrl = (url: string): ComponentGuide | null => {
   const parts = url
@@ -8,7 +7,7 @@ export const getGuideByUrl = (url: string): ComponentGuide | null => {
     .split("/")
     .slice(-2);
 
-  const category = parts[0];
+  const category = parts[0] as categoryType;
   const component = parts[1].replace(".glb" , '');
 
   return components[category][component].guide ?? null;

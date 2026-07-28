@@ -1,6 +1,6 @@
 
 export const breadboard = {
-  breadboard63r10c: {
+  breadboard63r: {
     guide: {
       title: 'Breadboard 63R x 10C Guide',
       icon: 'CircuitBoard',
@@ -34,7 +34,7 @@ export const breadboard = {
     ]
   },
 
-  breadboardsmall30r10c: {
+  breadboardsmall: {
     guide: {
       title: 'Breadboard Small 30R x 10C Guide',
       icon: 'CircuitBoard',
@@ -67,7 +67,7 @@ export const breadboard = {
     ]
   },
 
-  breadboardmini17r10c : {
+  breadboardmini: {
     guide: {
       title: 'Breadboard Mini 17R x 10C Guide',
       icon: 'CircuitBoard',

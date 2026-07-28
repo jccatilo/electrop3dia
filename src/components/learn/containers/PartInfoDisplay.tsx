@@ -2,8 +2,7 @@
 
 import React, { useState } from 'react';
 import { Cpu, ChevronLeft, ChevronRight, Info, Grid, Layers, Zap, Circle, ArrowRight } from 'lucide-react';
-import {getPartInfoForComponent} from "@/lib/constants/partInfo";
-import type { ComponentPartInfo } from '@/types/Component';
+import {getPartInfoForComponent, PartInfo} from "@/lib/constants/partInfo";
 
 interface PartInfoDisplayProps {
   isDark: boolean;
@@ -46,7 +45,7 @@ export function PartInfoDisplay({ isDark, selectedModel, hoveredPartName }: Part
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  const partItems: ComponentPartInfo[] = selectedModel
+  const partItems: PartInfo[] = selectedModel
     ? getPartInfoForComponent(selectedModel.url)
     : [];
 
@@ -55,7 +54,7 @@ export function PartInfoDisplay({ isDark, selectedModel, hoveredPartName }: Part
     if (!groups[category]) groups[category] = [];
     groups[category].push(part);
     return groups;
-  }, {} as Record<string, ComponentPartInfo[]>);
+  }, {} as Record<string, PartInfo[]>);
 
   // Reset index when model changes
   React.useEffect(() => {
