@@ -1,8 +1,9 @@
 'use client';
 
 import { Container, Text, withOpacity } from '@react-three/uikit';
-import { getGuideByUrl, GuideSection } from '@/lib/constants/componentGuides';
+import { getGuideByUrl} from '@/lib/constants/componentGuides';
 import { VRColors, sanitizeVRText } from './theme';
+import type { GuideSection } from '@/types/Component';
 
 interface GuidePanelProps {
   colors: VRColors;

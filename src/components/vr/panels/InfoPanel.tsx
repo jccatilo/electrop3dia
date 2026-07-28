@@ -2,9 +2,10 @@
 
 import { useMemo } from 'react';
 import { Container, Text, withOpacity } from '@react-three/uikit';
-import { getPartInfoForComponent, PartInfo } from '@/lib/constants/partInfo';
+import { getPartInfoForComponent } from '@/lib/constants/partInfo';
 import { getTriviaForComponent } from '@/lib/constants/trivia';
 import { VRColors, sanitizeVRText } from './theme';
+import type { ComponentPartInfo } from '@/types/Component';
 
 interface InfoPanelProps {
   colors: VRColors;
@@ -13,7 +14,7 @@ interface InfoPanelProps {
 }
 
 export function InfoPanel({ colors, modelUrl, hoveredPartName }: InfoPanelProps) {
-  const parts: PartInfo[] = useMemo(
+  const parts: ComponentPartInfo[] = useMemo(
     () => (modelUrl ? getPartInfoForComponent(modelUrl) : []),
     [modelUrl]
   );
@@ -27,10 +28,10 @@ export function InfoPanel({ colors, modelUrl, hoveredPartName }: InfoPanelProps)
       const category = part.category || 'General';
       (groups[category] ??= []).push(part);
       return groups;
-    }, {} as Record<string, PartInfo[]>);
+    }, {} as Record<string, ComponentPartInfo[]>);
   }, [parts]);
 
-  const isHighlighted = (part: PartInfo) => {
+  const isHighlighted = (part: ComponentPartInfo) => {
     if (!hoveredPartName) return false;
     const hovered = hoveredPartName.toLowerCase();
     const name = part.partName.toLowerCase();
