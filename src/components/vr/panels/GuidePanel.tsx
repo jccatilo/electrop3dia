@@ -73,7 +73,7 @@ export function GuidePanel({ colors, modelUrl }: GuidePanelProps) {
                     Pro Tips
                   </Text>
                   {guide.proTips.map((tip, i) => (
-                    <Text key={i} fontSize={10.5} color={colors.text} whiteSpace="nowrap" overflow="hidden" title={sanitizeVRText(tip)}>
+                    <Text key={i} fontSize={10.5} color={colors.text} whiteSpace="pre-line">
                       {sanitizeVRText(tip)}
                     </Text>
                   ))}
@@ -86,7 +86,7 @@ export function GuidePanel({ colors, modelUrl }: GuidePanelProps) {
                     Common Mistakes
                   </Text>
                   {guide.commonMistakes.map((mistake, i) => (
-                    <Text key={i} fontSize={10.5} color={colors.text} whiteSpace="nowrap" overflow="hidden" title={sanitizeVRText(mistake)}>
+                    <Text key={i} fontSize={10.5} color={colors.text} whiteSpace="pre-line">
                       {sanitizeVRText(mistake)}
                     </Text>
                   ))}

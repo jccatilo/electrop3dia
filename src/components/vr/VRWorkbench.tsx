@@ -375,7 +375,7 @@ export function VRWorkbench({ isDark, selectedId, onModelSelect, onExitVR }: VRW
           borderColor={colors.panelBorder}
           hover={{ backgroundColor: colors.rowHoverBg }}
         >
-          <Text fontSize={7.5} fontWeight={400} color={colors.mutedText ?? colors.text}>
+          <Text fontSize={7.5} fontWeight={400} color={colors.textMuted ?? colors.text}>
             Note: If you cannot grab the item, try resetting the model
           </Text>
         </Container>
