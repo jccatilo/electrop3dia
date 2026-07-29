@@ -3,7 +3,6 @@ const nextConfig = {
   output: 'export',  // This enables static HTML export
   reactStrictMode: true,
   allowedDevOrigins: [
-    '0.0.0.0',
     '192.168.103.118',
     'electrop3dia.trioe.dev'
   ],
