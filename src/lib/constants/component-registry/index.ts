@@ -7,7 +7,7 @@ import {motor} from './motor'
 import {output} from './output'
 import {power} from './power'
 import {powercontrol} from './powercontrol'
-import type {ComponentRegistry}  from '@/src/types/Component.ts'
+import type {ComponentRegistry}  from '@/types/Component.ts'
 
 
 export const components: ComponentRegistry =

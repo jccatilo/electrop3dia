@@ -1,3 +1,4 @@
+import {ComponentCategory} from "@/types/Component";
 
 export const microcontroller = {
   trioeboard: {
@@ -154,4 +155,4 @@ export const microcontroller = {
       { fact: "The TrioeBreadboard follows the standard 0.1 inch (2.54mm) hole spacing - the global standard for electronic component pins." },
     ]
   },
-};
+} satisfies ComponentCategory;

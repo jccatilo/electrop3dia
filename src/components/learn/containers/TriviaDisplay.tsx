@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { Sparkles, ChevronLeft, ChevronRight, Info } from 'lucide-react';
-import { getTriviaForComponent, TriviaItem } from '../../../lib/constants/trivia';
+import { getTriviaForComponent, } from '@/lib/constants/trivia';
+import {ComponentTrivia} from "@/types/Component";
 
 interface TriviaDisplayProps {
   isDark: boolean;
@@ -16,8 +17,8 @@ export function TriviaDisplay({ isDark, selectedModel }: TriviaDisplayProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  const triviaItems: TriviaItem[] = selectedModel
-    ? getTriviaForComponent(selectedModel.url, 5)
+  const triviaItems: ComponentTrivia[] = selectedModel
+    ? getTriviaForComponent(selectedModel.url)
     : [];
 
   React.useEffect(() => {

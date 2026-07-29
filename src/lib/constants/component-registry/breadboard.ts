@@ -1,6 +1,7 @@
+import {ComponentCategory} from "@/types/Component";
 
 export const breadboard = {
-  breadboard63r: {
+  "breadboard63r10c": {
     guide: {
       title: 'Breadboard 63R x 10C Guide',
       icon: 'CircuitBoard',
@@ -34,7 +35,7 @@ export const breadboard = {
     ]
   },
 
-  breadboardsmall: {
+  "breadboardsmall30r10c": {
     guide: {
       title: 'Breadboard Small 30R x 10C Guide',
       icon: 'CircuitBoard',
@@ -67,7 +68,7 @@ export const breadboard = {
     ]
   },
 
-  breadboardmini: {
+  "breadboardmini17r10c" : {
     guide: {
       title: 'Breadboard Mini 17R x 10C Guide',
       icon: 'CircuitBoard',
@@ -99,4 +100,4 @@ export const breadboard = {
       { fact: "Despite their small size, mini breadboards follow the exact same internal wiring pattern as full-size boards - making them fully interchangeable in most circuits." },
     ]
   },
-};
+} satisfies ComponentCategory;
