@@ -154,7 +154,7 @@ export default function CircuitTraces({ isDark }: CircuitTracesProps) {
     };
 
     // Run initial setup with a slight delay to ensure DOM is ready
-    setTimeout(() => {
+    const initTimeoutId = setTimeout(() => {
       initializeAnimation();
     }, 100);
 
@@ -162,16 +162,21 @@ export default function CircuitTraces({ isDark }: CircuitTracesProps) {
       initializeAnimation();
     };
 
-    window.addEventListener('resize', handleResize);
-    
-    // Also listen for scroll and load events
-    window.addEventListener('load', initializeAnimation);
-    window.addEventListener('scroll', () => {
+    // Named so cleanup can actually remove it — this used to be an inline
+    // function removed by the wrong reference, leaking one permanent scroll
+    // listener (and a stale canvas closure) per theme toggle.
+    const handleScroll = () => {
       const newHeight = getPageHeight();
       if (Math.abs(canvas.height - newHeight) > 50) {
         initializeAnimation();
       }
-    });
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Also listen for scroll and load events
+    window.addEventListener('load', initializeAnimation);
+    window.addEventListener('scroll', handleScroll);
 
     const drawCircuit = () => {
       if (canvas.width === 0 || canvas.height === 0) {
@@ -300,9 +305,10 @@ export default function CircuitTraces({ isDark }: CircuitTracesProps) {
     drawCircuit();
 
     return () => {
+      clearTimeout(initTimeoutId);
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('load', initializeAnimation);
-      window.removeEventListener('scroll', handleResize);
+      window.removeEventListener('scroll', handleScroll);
       cancelAnimationFrame(animationFrameId);
     };
   }, [isDark]);

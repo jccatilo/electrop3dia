@@ -14,15 +14,23 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [isDark, setIsDark] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // Load theme from localStorage on mount
+  // Load theme from localStorage on mount.
+  // Storage access throws outright in some contexts (sandboxed iframe without
+  // allow-same-origin, "block all site data", some webviews). Since rendering is
+  // gated on `mounted`, an unguarded throw here would leave EVERY page blank —
+  // so failures must degrade to the default theme, never block mounting.
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setIsDark(savedTheme === 'dark');
-    } else {
-      // Default to light mode
-      setIsDark(false);
-      localStorage.setItem('theme', 'light');
+    try {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        setIsDark(savedTheme === 'dark');
+      } else {
+        // Default to light mode
+        setIsDark(false);
+        localStorage.setItem('theme', 'light');
+      }
+    } catch {
+      setIsDark(false); // storage unavailable — run with the default theme
     }
     setMounted(true);
   }, []);
@@ -30,8 +38,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   // Update localStorage and html class when theme changes
   useEffect(() => {
     if (mounted) {
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      
+      try {
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      } catch { /* storage unavailable — theme just won't persist */ }
+
       // Update html class for global styling if needed
       if (isDark) {
         document.documentElement.classList.add('dark');

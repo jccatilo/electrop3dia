@@ -374,6 +374,7 @@ export function MainPageMob() {
   const [modelKey, setModelKey] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number } | null>(null);
+  const [contextLost, setContextLost] = useState(false);
 
   const handleModelSelect = useCallback((
     url: string,
@@ -465,12 +466,34 @@ export function MainPageMob() {
                   </div>
                 )}
 
+                {contextLost && (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 z-40 px-4 text-center bg-black/60 backdrop-blur-sm">
+                    <p className="text-xs text-white">
+                      The 3D view lost its graphics context and is recovering.
+                    </p>
+                    <button
+                      onClick={() => window.location.reload()}
+                      className="px-3 py-1.5 rounded-md text-xs font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                    >
+                      Reload page
+                    </button>
+                  </div>
+                )}
+
                 <div className="w-full h-full">
                   <Canvas
                     camera={{ position: cameraPosition, fov: 20, near: 0.1, far: 1000 }}
                     onCreated={({ gl }) => {
-                      gl.domElement.addEventListener('webglcontextlost', (e) => {
+                      const canvas = gl.domElement;
+                      // preventDefault() is a promise to the browser that we will
+                      // restore the context; without the matching 'restored'
+                      // handler the canvas stays black until a full page reload.
+                      canvas.addEventListener('webglcontextlost', (e) => {
                         e.preventDefault();
+                        setContextLost(true);
+                      });
+                      canvas.addEventListener('webglcontextrestored', () => {
+                        setContextLost(false);
                       });
                     }}
                   >
